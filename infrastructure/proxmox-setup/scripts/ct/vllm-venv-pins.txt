@@ -1,0 +1,7 @@
+# Минимальные пины venv vLLM на CT 101 после CVE-2026-48710 (2026-05-28).
+# Полный снимок на сервере: /srv/llm/vllm-venv.freeze.txt
+
+vllm==0.20.2
+fastapi==0.136.1
+starlette==1.0.1
+uvicorn==0.47.0

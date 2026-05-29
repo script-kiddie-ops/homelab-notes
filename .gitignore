@@ -1,0 +1,59 @@
+# --- Secrets and runtime config (never commit) ---
+.env
+.env.*
+!.env.example
+*vllm.env
+!*vllm.env.example
+**/authorized_keys
+**/id_ed25519*
+**/id_rsa*
+*.pem
+*.key
+*.p12
+secrets/
+**/HF_TOKEN*
+
+# Full venv / freeze dumps from servers (may contain paths)
+*.freeze.txt
+**/vllm-venv.freeze.txt
+pip-freeze-*.txt
+
+# Private machine-specific notes (optional: uncomment if you move ssh_notes here)
+# infrastructure/proxmox-setup/ssh_notes.md
+private/
+**/private/
+
+# Cursor / IDE / local exports (often contain tokens or PII)
+.cursor/
+**/.cursor/
+cursor_chat*.md
+**/cursor-exports/
+*.jsonl
+
+# Proxmox / VM artifacts
+*.vma
+*.vmdk
+*.iso
+
+# Models and large benchmarks (not for git)
+*.gguf
+*.safetensors
+*.bin
+**/models/
+**/benchmarks/raw/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+*~
+
+# Local override files
+*.local
+*.local.md
+*_local.*
