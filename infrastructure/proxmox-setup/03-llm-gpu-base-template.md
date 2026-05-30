@@ -23,7 +23,10 @@
 | Список clone от 900 | `bash scripts/pve/list-llm-gpu-clones.sh` |
 | Продублировать `.conf` из эталона | [03a — propagate](03a-propagate-conf-from-template.md) |
 | Обновить драйвер (хост → template → CT) | [03b — driver chain](03b-upgrade-nvidia-driver-chain.md) |
-| Первый Ollama-CT (102) | `bash scripts/pve/pilot-ollama-ct.sh` |
+| Первый Ollama-CT (102) | `bash scripts/pve/deploy-llm-ct.sh --engine ollama` или `RUN_AS_ROOT.sh ollama` |
+| Deploy clone (runbook) | [03c — deploy clone](03c-deploy-llm-gpu-clone.md) |
+| **Эксплуатация Ollama** | [05 — operations](05-ollama-operations.md) |
+| **Контекст / thinking Ollama** | [06 — inference settings](06-ollama-inference-settings.md) |
 | Урезать RAM всем LLM-CT | `for id in $(list-llm-gpu-clones.sh); do pct set $id -memory 32768; done` |
 
 ## Что в template (rootfs)
@@ -107,6 +110,8 @@ bash RUN_AS_ROOT.sh all      # prep + template + pilot Ollama CT 102
 bash RUN_AS_ROOT.sh prep
 bash RUN_AS_ROOT.sh template
 bash RUN_AS_ROOT.sh ollama
+# пересоздать CT 102:
+DESTROY_YES=1 bash scripts/pve/deploy-llm-ct.sh --engine ollama
 ```
 
 ## Clone нового CT
@@ -141,7 +146,8 @@ pct start 103
 | `clone-llm-gpu-ct.sh` | PVE root |
 | `list-llm-gpu-clones.sh` | PVE root |
 | `propagate-conf-from-template.sh` | PVE root |
-| `pilot-ollama-ct.sh` | PVE root |
+| `deploy-llm-ct.sh` | PVE root — **один проход** clone + SSH + engine + verify |
+| `install-ollama-engine.sh` | PVE root — только Ollama в running CT |
 | `bootstrap-llm-gpu-base.sh` | внутри CT root |
 | `sanitize-for-template.sh` | внутри CT root |
 | `upgrade-nvidia-user-space.sh` | внутри CT root |

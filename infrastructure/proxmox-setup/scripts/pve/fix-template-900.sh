@@ -65,4 +65,4 @@ pct template "$TEMPLATE_VMID"
 grep -qE '^template:\s*1' "$CONF" && echo "OK: template $TEMPLATE_VMID"
 
 pct start 101 2>/dev/null || true
-echo "Готово. Clone: bash $SCRIPT_DIR/clone-llm-gpu-ct.sh 102 guests-ollama-ct ollama"
+echo "Готово. Deploy: bash $SCRIPT_DIR/deploy-llm-ct.sh --engine ollama"

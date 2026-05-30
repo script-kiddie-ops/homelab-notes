@@ -26,11 +26,15 @@
 | [01 — Proxmox дома](01-proxmox-home-deploy.md) | Дневник: установка PVE, сеть, ZFS, NVIDIA на хосте |
 | [02 — vLLM в LXC](02-vllm-lxc-deploy.md) | Дневник: CT 101, GPU, vLLM, замеры |
 | [03 — LLM-GPU base template](03-llm-gpu-base-template.md) | Template CT 900, clone, runbook'и |
+| [03c — deploy clone](03c-deploy-llm-gpu-clone.md) | Один проход: новый CT, SSH, пароли, Ollama |
 | [03a — propagate conf](03a-propagate-conf-from-template.md) | Тиражирование `.conf` на clone |
 | [03b — NVIDIA driver chain](03b-upgrade-nvidia-driver-chain.md) | Хост → template → контейнеры |
+| [04 — Ollama CT 102](04-ollama-ct-from-template.md) | Дневник: Ollama из template 900 |
+| [05 — Ollama operations](05-ollama-operations.md) | Модели, systemd, API, mutex с vLLM |
+| [06 — Ollama inference](06-ollama-inference-settings.md) | Контекст, `num_ctx`, thinking Qwen3, сравнение с vLLM |
 | [instruction.md](instruction.md) | Пошаговая инструкция (фазы 0–12) |
 | [vllm_serve_first_data.md](vllm_serve_first_data.md) | Первые замеры моделей на 3060 |
 | [vllm_bench_serve.md](vllm_bench_serve.md) | Результаты `vllm bench serve` |
 | [ssh_notes.md](ssh_notes.md) | Заметки по настройке SSH (порт 1234, `ssh.socket`, ключи) |
 | [update-starlette-cve-2026-48710.md](update-starlette-cve-2026-48710.md) | Патч Starlette 1.0.1 (BadHost), проверки, пины venv |
-| [scripts/](scripts/) | `gpu-mutex`, LLM-GPU template (`create-llm-gpu-template.sh`, `clone-llm-gpu-ct.sh`, …), bench, `vllm.env.example`, audit |
+| `scripts/pve/` | `gpu-mutex`, `deploy-llm-ct.sh`, `clone-llm-gpu-ct.sh`, template scripts, audit |

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Запуск на PVE под root (su - или sudo bash):
-#   cd ~/llm-gpu-setup && bash RUN_AS_ROOT.sh [all|prep|template|ollama]
+#   cd ~/llm-gpu-setup && bash RUN_AS_ROOT.sh [all|prep|template|recreate|ollama|deploy]
 #
 # Скопировано с рабочей станции в ~/llm-gpu-setup/
 
@@ -34,7 +34,11 @@ run_recreate() {
 }
 
 run_ollama() {
-    bash "$PVE/pilot-ollama-ct.sh"
+    bash "$PVE/deploy-llm-ct.sh" --engine ollama
+}
+
+run_deploy() {
+    bash "$PVE/deploy-llm-ct.sh" "$@"
 }
 
 case "$PHASE" in
@@ -42,12 +46,13 @@ case "$PHASE" in
     template) run_template ;;
     recreate) run_recreate ;;
     ollama) run_ollama ;;
+    deploy) shift; run_deploy "$@" ;;
     all)
         run_template
         run_ollama
         ;;
     *)
-        echo "Usage: $0 [all|prep|template|recreate|ollama]" >&2
+        echo "Usage: $0 [all|prep|template|recreate|ollama|deploy [--engine ollama|none ...]]" >&2
         exit 1
         ;;
 esac

@@ -182,7 +182,7 @@ setup_base_packages() {
     apt-get update -qq
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
         curl git python3 python3-venv python3-pip build-essential \
-        openssh-server sudo
+        openssh-server sudo zstd
 }
 
 setup_ssh_user() {

@@ -67,11 +67,23 @@ if ! grep -qE '^tags:.*llm-gpu-base' "$CONF" 2>/dev/null; then
     fi
 fi
 
-# GPU mutex
+# GPU mutex: hookscript + VMID в group.conf
 if [ -f "$SCRIPT_DIR/install-gpu-mutex.sh" ]; then
     bash "$SCRIPT_DIR/install-gpu-mutex.sh" "$NEW_VMID" || true
 elif ! grep -qE '^hookscript:[[:space:]]*local:snippets/gpu-mutex\.sh' "$CONF"; then
     echo "hookscript: local:snippets/gpu-mutex.sh" >>"$CONF"
+fi
+
+GROUP_CONF="/etc/gpu-mutex/group.conf"
+mkdir -p /etc/gpu-mutex
+if [ ! -f "$GROUP_CONF" ] && [ -f "$SCRIPT_DIR/gpu-guests-group.conf" ]; then
+    cp "$SCRIPT_DIR/gpu-guests-group.conf" "$GROUP_CONF"
+fi
+if [ -f "$GROUP_CONF" ] && \
+   ! grep -qE "^[[:space:]]*${NEW_VMID}[[:space:]]*$" "$GROUP_CONF" && \
+   ! grep -qE "^${NEW_VMID}[[:space:]]*$" "$GROUP_CONF"; then
+    echo "$NEW_VMID" >>"$GROUP_CONF"
+    echo "Добавлен VMID $NEW_VMID в $GROUP_CONF"
 fi
 
 if ! grep -qE "^[[:space:]]*${NEW_VMID}[[:space:]]" "$REGISTRY" && \
