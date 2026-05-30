@@ -1,0 +1,2 @@
+# Dev tools for script-kiddie-ops (optional, local only)
+pre-commit>=4.0.0

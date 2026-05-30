@@ -1,0 +1,5 @@
+# Реестр CT, клонированных из template llm-gpu-base (VMID 900).
+# Формат: VMID  hostname  engine  cloned_from  cloned_date
+# CT 101 (legacy vLLM) сюда НЕ включаем — создан до template.
+#
+# VMID  hostname              engine    cloned_from  cloned_date
