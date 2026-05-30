@@ -31,7 +31,8 @@
 | [03b — NVIDIA driver chain](03b-upgrade-nvidia-driver-chain.md) | Хост → template → контейнеры |
 | [04 — Ollama CT 102](04-ollama-ct-from-template.md) | Дневник: Ollama из template 900 |
 | [05 — Ollama operations](05-ollama-operations.md) | Модели, systemd, API, mutex с vLLM |
-| [06 — Ollama inference](06-ollama-inference-settings.md) | Контекст, `num_ctx`, thinking Qwen3, сравнение с vLLM |
+| [06 — Ollama inference](06-ollama-inference-settings.md) | Контекст, thinking Qwen3, сравнение с vLLM |
+| [07 — Hardware maintenance](07-homelab-hardware-maintenance.md) | ZFS, SMART, GPU, RAM, бэкап на USB |
 | [instruction.md](instruction.md) | Пошаговая инструкция (фазы 0–12) |
 | [vllm_serve_first_data.md](vllm_serve_first_data.md) | Первые замеры моделей на 3060 |
 | [vllm_bench_serve.md](vllm_bench_serve.md) | Результаты `vllm bench serve` |
