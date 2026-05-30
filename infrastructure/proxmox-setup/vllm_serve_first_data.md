@@ -12,7 +12,7 @@
 - логи загрузки модели (journalctl -u vllm.service -f):
   - Model loading took 5.71 GiB memory and 13.215767 seconds
   - Available KV cache memory: 3.47 GiB
-- логи отработки запроса: MAX(Avg generation throughput): ~57 tokens/s 
+- логи отработки запроса: MAX(Avg generation throughput): ~57 tokens/s
 
 `Qwen3-1.7B`:
 

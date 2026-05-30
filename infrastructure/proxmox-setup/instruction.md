@@ -22,7 +22,7 @@
 - Создание ZFS-пула на SATA SSD **перезапишет SATA 4TB**.
 - ZFS на одном диске **не защищает от отказа диска**. Бэкапы обязательны.
 
---- 
+---
 
 ## Фаза 0. Подготовка (5–20 минут)
 
@@ -124,14 +124,14 @@
 
 1) **Отключите enterprise-источник** (любой удобный способ):
    - на свежих установках файл может называться **`pve-enterprise.sources`** (формат DEB822), а не `pve-enterprise.list` — суть та же;
-   - **переименуйте** файл (проще откатить):  
-     `sudo mv /etc/apt/sources.list.d/pve-enterprise.sources /etc/apt/sources.list.d/pve-enterprise.sources.bak`  
+   - **переименуйте** файл (проще откатить):
+     `sudo mv /etc/apt/sources.list.d/pve-enterprise.sources /etc/apt/sources.list.d/pve-enterprise.sources.bak`
      (если у вас всё же **`.list`** — то же самое с `pve-enterprise.list` → `.bak`);
    - либо **закомментируйте все строки** в этом файле (`#`);
    - либо в DEB822-блоке добавьте **`Enabled: no`** (если ваша версия `apt` это понимает — см. `man sources.list`).
 
-2) **Добавьте бесплатную ветку `pve-no-subscription`**. Актуальную строку и пояснения возьмите из официальной вики:  
-   [Package Repositories](https://pve.proxmox.com/wiki/Package_Repositories)  
+2) **Добавьте бесплатную ветку `pve-no-subscription`**. Актуальную строку и пояснения возьмите из официальной вики:
+   [Package Repositories](https://pve.proxmox.com/wiki/Package_Repositories)
    для вашей версии PVE и базы Debian (у **PVE 8 / 9** это обычно **`bookworm`**). Пример записи (проверьте по вики, не копируйте вслепую, если выйдет новый релиз):
 
 ```bash
@@ -652,9 +652,8 @@ nvidia-smi
 
 1. В CT подключить **тот же** репозиторий, что и на хосте: **`https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/`** в **`/etc/apt/sources.list.d/`** с **`signed-by=/usr/share/keyrings/cuda-archive-keyring.gpg`**.
 2. Актуальный keyring: взять **`/usr/share/keyrings/cuda-archive-keyring.gpg`** с **хоста PVE** или распаковать из **`cuda-keyring_*.deb`** (`dpkg-deb -x …`), а не устаревшие URL **`*.pub`** (часто **404**).
-3. Поставить user-space **той же версии**, что **`nvidia-smi` на хосте**, например: **`libnvidia-ml1`**, **`libcuda1`**, **`nvidia-driver-cuda`** (метапакет даёт **`nvidia-smi`**) с **`apt install -o APT::Install-Recommends=false`**, без **`nvidia-kernel-dkms`** в CT.
-4. Зафиксировать пакеты, чтобы **`apt upgrade`** в CT не разъехался с хостом:  
-   `dpkg-query -W -f='${Package}\n' | grep -E '^(libnvidia|nvidia-)' | xargs -r apt-mark hold`
+3. Поставить user-space **той же версии**, что **`nvidia-smi` на хосте** — автоматизация: [`scripts/ct/bootstrap-llm-gpu-base.sh`](scripts/ct/bootstrap-llm-gpu-base.sh) (переменная **`LLM_NVIDIA_DRIVER_VERSION`** с хоста). Внутри: **`nvidia-driver-cuda=<версия>`**, временный **apt pin** на `${версия}*` (в CUDA repo default — новее, напр. **610**), при смене ветки — **purge** старых пакетов; без **`nvidia-kernel-dkms`** в CT.
+4. Зафиксировать пакеты: `apt-mark hold` на все `libnvidia-*` / `nvidia-*` (делает bootstrap). Template **900**: см. [03-llm-gpu-base-template.md](03-llm-gpu-base-template.md).
 
 ---
 
@@ -1197,4 +1196,3 @@ client.chat.completions.create(
 ### Проблема: vLLM не стартует (CUDA driver / unsupported GPU / OOM)
 - Сверьте **драйвер хоста** и **CUDA в wheel PyTorch** с таблицей на [странице установки vLLM](https://docs.vllm.ai/en/latest/getting_started/installation/gpu.html).
 - Уменьшите **`--max-model-len`**, **`--gpu-memory-utilization`**, **`--max-num-seqs`**; смотрите **`journalctl -u vllm`** и **`nvidia-smi`** во время запуска.
-

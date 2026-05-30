@@ -57,3 +57,5 @@ Thumbs.db
 *.local
 *.local.md
 *_local.*
+pve-deploy.env
+**/pve-deploy.env

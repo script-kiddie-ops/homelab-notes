@@ -54,3 +54,15 @@
 | research-rag | `research-rag/` | *(пока пусто)* |
 
 Старт чтения по Proxmox: [infrastructure/proxmox-setup/README.md](infrastructure/proxmox-setup/README.md).
+
+## Разработка и коммиты
+
+В git не попадают реальные IP, пользователи и имена ZFS — см. `private/map` (локально, не в git). Pre-commit **только на вашей машине** (нужен каталог `private/`); в GitHub CI проверка не запускается.
+
+```bash
+pip install -r requirements-dev.txt
+pre-commit install
+pre-commit run --all-files
+```
+
+Паттерны утечек — в `private/leak-patterns.conf`; публичная обёртка `scripts/check-no-private-leaks.sh` без боевых значений.

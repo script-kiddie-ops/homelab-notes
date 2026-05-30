@@ -55,29 +55,29 @@ Burstiness factor: 1.0 (Poisson process)
 Maximum request concurrency: 1
 
 ============ Serving Benchmark Result ============
-Successful requests:                     20        
-Failed requests:                         0         
-Maximum request concurrency:             1         
-Benchmark duration (s):                  50.19     
-Total input tokens:                      10400     
-Total generated tokens:                  2560      
-Request throughput (req/s):              0.40      
-Output token throughput (tok/s):         51.01     
-Peak output token throughput (tok/s):    59.00     
-Peak concurrent requests:                2.00      
-Total token throughput (tok/s):          258.22    
+Successful requests:                     20
+Failed requests:                         0
+Maximum request concurrency:             1
+Benchmark duration (s):                  50.19
+Total input tokens:                      10400
+Total generated tokens:                  2560
+Request throughput (req/s):              0.40
+Output token throughput (tok/s):         51.01
+Peak output token throughput (tok/s):    59.00
+Peak concurrent requests:                2.00
+Total token throughput (tok/s):          258.22
 ---------------Time to First Token----------------
-Mean TTFT (ms):                          320.70    
-Median TTFT (ms):                        317.38    
-P99 TTFT (ms):                           377.87    
+Mean TTFT (ms):                          320.70
+Median TTFT (ms):                        317.38
+P99 TTFT (ms):                           377.87
 -----Time per Output Token (excl. 1st token)------
-Mean TPOT (ms):                          17.23     
-Median TPOT (ms):                        17.24     
-P99 TPOT (ms):                           17.27     
+Mean TPOT (ms):                          17.23
+Median TPOT (ms):                        17.24
+P99 TPOT (ms):                           17.27
 ---------------Inter-token Latency----------------
-Mean ITL (ms):                           17.10     
-Median ITL (ms):                         17.23     
-P99 ITL (ms):                            17.65     
+Mean ITL (ms):                           17.10
+Median ITL (ms):                         17.23
+P99 ITL (ms):                            17.65
 ==================================================
 Results dir: /srv/llm/benchmarks/20260518-2143-qwen3-8b-awq-smoke
 ```
@@ -89,30 +89,30 @@ Burstiness factor: 1.0 (Poisson process)
 Maximum request concurrency: 5
 
 ============ Serving Benchmark Result ============
-Successful requests:                     50        
-Failed requests:                         0         
-Maximum request concurrency:             5         
-Request rate configured (RPS):           2.00      
-Benchmark duration (s):                  80.78     
-Total input tokens:                      51600     
-Total generated tokens:                  12800     
-Request throughput (req/s):              0.62      
-Output token throughput (tok/s):         158.45    
-Peak output token throughput (tok/s):    235.00    
-Peak concurrent requests:                8.00      
-Total token throughput (tok/s):          797.20    
+Successful requests:                     50
+Failed requests:                         0
+Maximum request concurrency:             5
+Request rate configured (RPS):           2.00
+Benchmark duration (s):                  80.78
+Total input tokens:                      51600
+Total generated tokens:                  12800
+Request throughput (req/s):              0.62
+Output token throughput (tok/s):         158.45
+Peak output token throughput (tok/s):    235.00
+Peak concurrent requests:                8.00
+Total token throughput (tok/s):          797.20
 ---------------Time to First Token----------------
-Mean TTFT (ms):                          634.29    
-Median TTFT (ms):                        660.92    
-P99 TTFT (ms):                           1265.15   
+Mean TTFT (ms):                          634.29
+Median TTFT (ms):                        660.92
+P99 TTFT (ms):                           1265.15
 -----Time per Output Token (excl. 1st token)------
-Mean TPOT (ms):                          28.58     
-Median TPOT (ms):                        28.73     
-P99 TPOT (ms):                           31.18     
+Mean TPOT (ms):                          28.58
+Median TPOT (ms):                        28.73
+P99 TPOT (ms):                           31.18
 ---------------Inter-token Latency----------------
-Mean ITL (ms):                           28.47     
-Median ITL (ms):                         21.69     
-P99 ITL (ms):                            328.33    
+Mean ITL (ms):                           28.47
+Median ITL (ms):                         21.69
+P99 ITL (ms):                            328.33
 ==================================================
 Results dir: /srv/llm/benchmarks/20260518-2146-qwen3-8b-awq-load
 ```
